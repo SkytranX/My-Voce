@@ -11,7 +11,7 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+export default function SettingScreen() {
   return (
     <View style={styles.container}>
       <ScrollView

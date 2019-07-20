@@ -11,6 +11,8 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
+// import { Icon } from 'native-base'
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>

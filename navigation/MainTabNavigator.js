@@ -7,6 +7,21 @@ import ProfileScreen from '../screens/ProfileScreen';
 import LinksScreen from '../screens/FeedScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
+const tabColors = {
+  activeTintColor: 'gray',
+  activeBackgroundColor: 'white',
+  inactiveTintColor: 'white',
+  swipeEnabled: false,
+  showLabel: true,
+  showIcon: true,
+  style: {
+    backgroundColor: 'gray',
+  },
+  indicatorStyle: {
+    backgroundColor: 'gray',
+  }
+}
+
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
@@ -31,6 +46,7 @@ Profile.navigationOptions = {
       }
     />
   ),
+  tabBarOptions: tabColors,
 };
 
 Profile.path = '';
@@ -47,6 +63,7 @@ Feed.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
   ),
+  tabBarOptions: tabColors,
 };
 
 Feed.path = '';
@@ -63,14 +80,33 @@ SettingsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
   ),
+  tabBarOptions: tabColors,
 };
 
 SettingsStack.path = '';
+
+const Likes = createStackNavigator(
+  {
+    Settings: SettingsScreen,
+  },
+  config
+);
+
+Likes.navigationOptions = {
+  tabBarLabel: 'Likes',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-heart-empty' : 'md-heart-empty'} />
+  ),
+  tabBarOptions: tabColors,
+};
+
+Likes.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   Feed,
   Profile,
   SettingsStack,
+  Likes,
 });
 
 tabNavigator.path = '';
